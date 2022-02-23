@@ -15,3 +15,8 @@
   position: relative;
   content: "❌";
 }
+
+.fixed {
+  bottom: 15px;
+  position: absolute;
+}
