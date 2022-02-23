@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
+    <link rel="stylesheet" href="style.css">
+    <title>North West Junior Congress</title>
+  </head>
+  <body>
+    <header>
+        <h1>
+          North West Junior Congress
+        </h1>
+        <p>
+          Online Congress registration & payment form
+        </p>
+    </header>
+    <hr>
+    <section>
+      <div id="login-form-container">
+        <h2>1. Register or Login</h2>
+        <p>Create an account so you can login later to manage your registration</p>
+        <form id="login-form">
+          <label for="login-email">Email</label>
+          <input type="email" name="login-email" id="login-email" required>
+          <label for="login-password">Password</label>
+          <input type="password" name="login-password" id="login-password" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+          <div id="passwordMessage">
+            <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+            <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+            <p id="number" class="invalid">A <b>number</b></p>
+            <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+          </div>
+          <button type="submit">Go</button>
+        </form>
+      </div>
+      <div id="participant-form-container" hidden>
+        <h2>2. Participant Details</h2>
+        <p>If you need to add multiple participants, you can do so on the next step</p>
+        <form id="participant-form">
+          <label for="participant-firstname">First Name*</label>
+          <input type="text" name="participant-firstname" id="participant-firstname" required>
+          <label for="participant-lastname">Last Name*</label>
+          <input type="text" name="participant-lastname" id="participant-lastname" required>
+          <label for="participant-dob">Date of Birth*</label>
+          <input type="date" name="participant-dob" id="participant-dob" required>
+          <label for="participant-ecf">ECF Membership Number</label>
+          <input type="text" name="participant-ecf" id="participant-ecf">
+          <label for="participant-rating">ECF Rating</label>
+          <input type="number" name="participant-rating" id="participant-rating">
+          <label for="participant-address">Address*</label>
+          <input type="text" name="participant-address" id="participant-address" required>
+          <p>*  Field required</p>
+          <button type="submit">Go</button>
+        </form>
+      </div>
+    </section>    
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>

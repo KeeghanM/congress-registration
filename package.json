@@ -1,0 +1,29 @@
+{
+  "name": "congress-registration",
+  "version": "1.0.0",
+  "description": "congress-registration",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite serve src",
+    "build": "vite build --emptyOutDir",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^2.8.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KeeghanM/congress-registration.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KeeghanM/congress-registration/issues"
+  },
+  "homepage": "https://github.com/KeeghanM/congress-registration#readme",
+  "dependencies": {
+    "animate.css": "^4.1.1",
+    "firebase": "^9.6.7"
+  }
+}
