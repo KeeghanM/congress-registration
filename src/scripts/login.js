@@ -2,9 +2,30 @@ import { auth, firestore } from "./firebase.js";
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
 } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
-import { signIn, handleError } from "./utils";
+import { handleError, switchPanels } from "./utils";
+import { getParticipants } from "./participants.js";
+
+// Check if already logged in
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    signIn(user);
+  }
+});
+
+// Handle signout button
+document.querySelector("#signout-btn").addEventListener("click", (e) => {
+  signOut(auth).then(() => {
+    document.querySelector("#signout-btn").hidden = true;
+    switchPanels(
+      document.querySelector("#participant-list-container"),
+      document.querySelector("#login-form-container")
+    );
+  });
+});
 
 // Login form submission
 document.querySelector("#login-form").addEventListener("submit", (e) => {
@@ -91,4 +112,13 @@ function checkPassword() {
     length.classList.remove("valid");
     length.classList.add("invalid");
   }
+}
+
+export function signIn() {
+  switchPanels(
+    document.querySelector("#login-form-container"),
+    document.querySelector("#participant-list-container")
+  );
+  document.querySelector("#signout-btn").hidden = false;
+  getParticipants();
 }
