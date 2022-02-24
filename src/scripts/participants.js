@@ -7,6 +7,7 @@ import {
   doc,
   setDoc,
   addDoc,
+  deleteDoc,
 } from "firebase/firestore";
 import { auth, firestore } from "./firebase";
 import { handleError, switchPanels } from "./utils";
@@ -26,7 +27,7 @@ export function getParticipants() {
       let div = document.createElement("div");
       let paidStatus = data.paid ? "Paid" : "Unpaid";
       div.innerHTML = `
-      <p><strong>${data.firstname} ${data.lastname}</strong> - ${data.ecfnumber} - ${paidStatus} <button id="${doc.id}" class="participant-edit">Edit</button></p>
+      <p><strong>${data.firstname} ${data.lastname}</strong> - ${data.ecfnumber} - ${paidStatus} <button pid="${doc.id}" class="participant-edit">Edit</button><button pid="${doc.id}" class="participant-del" pName="${data.firstname}-${data.lastname}">Delete</button></p>
       `;
       document.querySelector("#participant-list").appendChild(div);
     });
@@ -35,7 +36,14 @@ export function getParticipants() {
     Array.from(document.getElementsByClassName("participant-edit")).forEach(
       (btn) => {
         btn.addEventListener("click", () => {
-          editParticipant(btn.id);
+          editParticipant(btn.getAttribute("pid"));
+        });
+      }
+    );
+    Array.from(document.getElementsByClassName("participant-del")).forEach(
+      (btn) => {
+        btn.addEventListener("click", () => {
+          delParticipant(btn.getAttribute("pid"), btn.getAttribute("pName"));
         });
       }
     );
@@ -87,6 +95,24 @@ function editParticipant(id) {
       document.querySelector("#participant-list-container"),
       document.querySelector("#participant-form-container")
     );
+  }
+}
+
+// Confirm deletion of participant
+function delParticipant(id, name) {
+  let checkName = name.replace("-", " ");
+  let result = prompt(
+    "To confirm deletion, please type participant name: " + checkName
+  );
+
+  if (result?.toLowerCase() == checkName.toLowerCase()) {
+    deleteDoc(doc(firestore, "participants", id))
+      .then(() => {
+        getParticipants();
+      })
+      .catch((error) => handleError(error.message));
+  } else {
+    if (result) alert("incorrect name");
   }
 }
 
