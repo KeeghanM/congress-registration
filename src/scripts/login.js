@@ -22,6 +22,7 @@ document.querySelector("#signout-btn").addEventListener("click", (e) => {
   signOut(auth).then(() => {
     document.querySelector("#signout-btn").hidden = true;
     document.querySelector("#participant-form-container").hidden = true;
+    document.querySelector("#congress-details").hidden = false;
     document.querySelector("#participant-list").innerHTML = "";
     switchPanels(
       document.querySelector("#participant-list-container"),
@@ -110,6 +111,8 @@ function checkPassword() {
 }
 
 export function signIn() {
+  document.querySelector("#congress-details").hidden = true;
+
   switchPanels(
     document.querySelector("#login-form-container"),
     document.querySelector("#participant-list-container")
