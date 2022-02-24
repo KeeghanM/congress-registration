@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite serve src",
     "build": "vite build --emptyOutDir",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "publish": "firebase deploy --only hosting"
   },
   "devDependencies": {
     "vite": "^2.8.0"

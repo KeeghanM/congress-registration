@@ -9,7 +9,8 @@ import { doc, setDoc } from "firebase/firestore";
 import { handleError, switchPanels } from "./utils";
 import { getParticipants } from "./participants.js";
 
-// Check if already logged in
+// Listen to changes to Auth state, and run signIn
+// function when we have an authorised user
 onAuthStateChanged(auth, (user) => {
   if (user) {
     signIn(user);
@@ -20,6 +21,7 @@ onAuthStateChanged(auth, (user) => {
 document.querySelector("#signout-btn").addEventListener("click", (e) => {
   signOut(auth).then(() => {
     document.querySelector("#signout-btn").hidden = true;
+    document.querySelector("#participant-list").innerHTML = "";
     switchPanels(
       document.querySelector("#participant-list-container"),
       document.querySelector("#login-form-container")
@@ -35,32 +37,24 @@ document.querySelector("#login-form").addEventListener("submit", (e) => {
   const password = formData["login-password"];
 
   if (password.match("(?=.*[a-z])(?=.*[A-Z]).{8,}")) {
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        signIn(userCredential.user);
-      })
-      .catch((error) => {
-        if (error.code == "auth/user-not-found") {
-          createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-              let user = userCredential.user;
-              setDoc(doc(firestore, "users", user.uid), {
-                email: user.email,
-              })
-                .then(() => {
-                  signIn(user);
-                })
-                .catch((error) => {
-                  handleError(error.message);
-                });
-            })
-            .catch((error) => {
+    signInWithEmailAndPassword(auth, email, password).catch((error) => {
+      if (error.code == "auth/user-not-found") {
+        createUserWithEmailAndPassword(auth, email, password)
+          .then((userCredential) => {
+            let user = userCredential.user;
+            setDoc(doc(firestore, "users", user.uid), {
+              email: user.email,
+            }).catch((error) => {
               handleError(error.message);
             });
-        } else {
-          handleError(error.message);
-        }
-      });
+          })
+          .catch((error) => {
+            handleError(error.message);
+          });
+      } else {
+        handleError(error.message);
+      }
+    });
   } else {
     document.getElementById("passwordMessage").style.display = "block";
     checkPassword();
