@@ -12,8 +12,11 @@ import {
 import { auth, firestore } from "./firebase";
 import { handleError, switchPanels } from "./utils";
 
+let priceToBePaid = 0;
+
 // Build the participant list
 export function getParticipants() {
+  priceToBePaid = 0;
   document.querySelector("#participant-list").innerHTML = "";
   getDocs(
     query(
@@ -30,6 +33,8 @@ export function getParticipants() {
       <p><strong>${data.firstname} ${data.lastname}</strong> - ${data.ecfnumber} - ${paidStatus} <button pid="${doc.id}" class="participant-edit">Edit</button><button pid="${doc.id}" class="participant-del" pName="${data.firstname}-${data.lastname}">Delete</button></p>
       `;
       document.querySelector("#participant-list").appendChild(div);
+
+      priceToBePaid += data.paid ? 0 : 5;
     });
 
     // Once built, attach click events
@@ -47,6 +52,11 @@ export function getParticipants() {
         });
       }
     );
+
+    // Display price
+    document.querySelector("#payment-text").innerHTML = `
+    Price left to pay: £${priceToBePaid}.00
+    `;
   });
 }
 

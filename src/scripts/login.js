@@ -21,6 +21,7 @@ onAuthStateChanged(auth, (user) => {
 document.querySelector("#signout-btn").addEventListener("click", (e) => {
   signOut(auth).then(() => {
     document.querySelector("#signout-btn").hidden = true;
+    document.querySelector("#participant-form-container").hidden = true;
     document.querySelector("#participant-list").innerHTML = "";
     switchPanels(
       document.querySelector("#participant-list-container"),
