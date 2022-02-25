@@ -6,17 +6,16 @@
 }
 .valid:before {
   position: relative;
-  content: "✔️";
+  content: '✔️';
 }
 .invalid {
   color: red;
 }
 .invalid:before {
   position: relative;
-  content: "❌";
+  content: '❌';
 }
 
-.fixed {
-  bottom: 15px;
-  position: absolute;
+.full-height {
+  min-height: 100vh;
 }
