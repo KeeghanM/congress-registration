@@ -17,5 +17,10 @@
 }
 
 .full-height {
-  min-height: 100vh;
+  min-height: calc(100vh - 75px);
+}
+
+#admin-list {
+  max-height: 600px;
+  overflow-y: auto;
 }

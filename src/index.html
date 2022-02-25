@@ -10,91 +10,107 @@
 </head>
 
 <body>
-  <div class="full-height">
-    <header>
-      <h1>Merseyside Junior Chess Rapidplay Congress</h1>
-      <p>Online registration</p>
-      <button id="signout-btn" hidden>Sign Out</button>
-    </header>
-    <hr />
-    <section id="congress-details">
-      <p><b>Date: </b>10am - 3pm Saturday 26th March 2022</p>
-      <p>
-        <b>Address: </b><a href="https://goo.gl/maps/SymBGrgBTbd6EDTn8" target="_blank">Merchant Taylors Boys School</a>
-      </p>
-      <p><b>Rounds: </b>5 Rounds of Rapid Chess</p>
-      <p><b>Sections:</b>
-      <ul>
-        <li>Under 9’s (Y3/Y4)</li>
-        <li>Under 11’s (Y5/Y6)</li>
-        <li>Under 13’s (Y7/Y8)</li>
-        <li>Under 15’s (Y9/Y10)</li>
-        <li>15 and Over (Y11 and above)</li>
-      </ul>
-      </p>
-      <p><b>Entrance Fee: </b>£5 /child</p>
-    </section>
-    <section>
-      <div id="login-form-container">
-        <h2>Register/Login</h2>
+  <div id="main">
+    <div class="full-height">
+      <header>
+        <h1>Merseyside Junior Chess Rapidplay Congress</h1>
+        <p>Online registration</p>
+        <button id="signout-btn" hidden>Sign Out</button>
+      </header>
+      <hr />
+      <section id="congress-details">
+        <p><b>Date: </b>10am - 3pm Saturday 26th March 2022</p>
         <p>
-          Create an account so you can login later to manage your registration
+          <b>Address: </b><a href="https://goo.gl/maps/SymBGrgBTbd6EDTn8" target="_blank">Merchant Taylors Boys
+            School</a>
         </p>
-        <form id="login-form">
-          <label for="login-email">Email</label>
-          <input type="email" name="login-email" id="login-email" required />
-          <label for="login-password">Password</label>
-          <input type="password" name="login-password" id="login-password"
-            title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-            required />
-          <div id="passwordMessage">
-            <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
-            <p id="capital" class="invalid">
-              A <b>capital (uppercase)</b> letter
-            </p>
-            <p id="number" class="invalid">A <b>number</b></p>
-            <p id="length" class="invalid">Minimum <b>8 characters</b></p>
-          </div>
-          <button type="submit">Go</button>
-        </form>
-      </div>
-      <div id="participant-list-container" hidden>
-        <h2>Current Particpants</h2>
-        <div id="participant-list"></div>
-        <button id="add-participant">Add</button>
-        <div>
-          <span id="payment-text">Price to pay: £0.00</span>
+        <p><b>Rounds: </b>5 Rounds of Rapid Chess</p>
+        <p><b>Sections:</b>
+        <ul>
+          <li>Under 9’s (Y3/Y4)</li>
+          <li>Under 11’s (Y5/Y6)</li>
+          <li>Under 13’s (Y7/Y8)</li>
+          <li>Under 15’s (Y9/Y10)</li>
+          <li>15 and Over (Y11 and above)</li>
+        </ul>
+        </p>
+        <p><b>Entrance Fee: </b>£5 /child</p>
+      </section>
+      <section>
+        <div id="login-form-container">
+          <h2>Register/Login</h2>
+          <p>
+            Create an account so you can login later to manage your registration
+          </p>
+          <form id="login-form">
+            <label for="login-email">Email</label>
+            <input type="email" name="login-email" id="login-email" required />
+            <label for="login-password">Password</label>
+            <input type="password" name="login-password" id="login-password"
+              title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+              required />
+            <div id="passwordMessage">
+              <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+              <p id="capital" class="invalid">
+                A <b>capital (uppercase)</b> letter
+              </p>
+              <p id="number" class="invalid">A <b>number</b></p>
+              <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+            </div>
+            <button type="submit">Go</button>
+          </form>
+          <p id="login-error"></p>
         </div>
-      </div>
-      <div id="participant-form-container" hidden>
-        <h2>Participant Details <button id="cancel-edit">Back</button></h2>
-        <form id="participant-form">
-          <input type="hidden" name="participant-id" id="participant-id" />
-          <label for="participant-firstname">First Name*</label>
-          <input type="text" name="participant-firstname" id="participant-firstname" required />
-          <label for="participant-lastname">Last Name*</label>
-          <input type="text" name="participant-lastname" id="participant-lastname" required />
-          <label for="participant-dob">Date of Birth*</label>
-          <input type="date" name="participant-dob" id="participant-dob" required />
-          <label for="participant-address">Address*</label>
-          <input type="text" name="participant-address" id="participant-address" required />
-          <label for="participant-ecf">ECF Membership Number</label>
-          <input type="text" name="participant-ecf" id="participant-ecf" />
-          <label for="participant-rating">ECF Rating</label>
-          <input type="text" name="participant-rating" id="participant-rating" />
-          <label for="participant-ratingcode">Rating Code</label>
-          <input type="text" name="participant-ratingcode" id="participant-ratingcode" />
-          <p>* Field required</p>
-          <button type="submit">Go</button>
-        </form>
-        <p id="saving-text" hidden>Saving...</p>
-      </div>
-    </section>
+        <div id="participant-list-container" hidden>
+          <h2>Current Particpants</h2>
+          <div id="participant-list"></div>
+          <button id="add-participant">Add</button>
+          <button id="admin-btn" hidden>Administration List</button>
+          <div>
+            <span id="payment-text">Price to pay: £0.00</span>
+          </div>
+        </div>
+        <div id="participant-form-container" hidden>
+          <h2>Participant Details <button id="cancel-edit">Back</button></h2>
+          <form id="participant-form">
+            <input type="hidden" name="participant-id" id="participant-id" />
+            <label for="participant-firstname">First Name*</label>
+            <input type="text" name="participant-firstname" id="participant-firstname" required />
+            <label for="participant-lastname">Last Name*</label>
+            <input type="text" name="participant-lastname" id="participant-lastname" required />
+            <label for="participant-dob">Date of Birth*</label>
+            <input type="date" name="participant-dob" id="participant-dob" required />
+            <label for="participant-address">Address*</label>
+            <input type="text" name="participant-address" id="participant-address" required />
+            <label for="participant-ecf">ECF Membership Number</label>
+            <input type="text" name="participant-ecf" id="participant-ecf" />
+            <label for="participant-rating">ECF Rating</label>
+            <input type="text" name="participant-rating" id="participant-rating" />
+            <label for="participant-ratingcode">Rating Code</label>
+            <input type="text" name="participant-ratingcode" id="participant-ratingcode" />
+            <p>* Field required</p>
+            <button type="submit">Go</button>
+          </form>
+          <p id="saving-text" hidden>Saving...</p>
+        </div>
+        <div id="admin-list-container" hidden>
+          <h2 id="admin-title">All Participants</h2>
+          <button id="admin-exit-btn">Back</button>
+          <div id="admin-list"></div>
+        </div>
+      </section>
+    </div>
+    <footer>
+      Sponsored by <a href="https://chesstraining.app" target="_blank">ChessTraining.app</a> - Registration Site Created
+      by <a target="_blank" href="https://keeghanm.github.io/">Keeghan</a>
+    </footer>
   </div>
-  <footer>
-    Sponsored by <a href="https://chesstraining.app" target="_blank">ChessTraining.app</a> - Registration Site Created
-    by <a target="_blank" href="https://keeghanm.github.io/">Keeghan</a>
-  </footer>
+  <div id="error" hidden>
+    <header>
+      <h1>Woops! Something went wrong</h1>
+      <p>Please contact the admin <a href="mailto:admin@chesscongress.app">admin@chesscongress.app</a></p>
+    </header>
+  </div>
   <script type="module" src="/main.js"></script>
 </body>
 
